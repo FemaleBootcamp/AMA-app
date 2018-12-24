@@ -19,24 +19,13 @@ class CreateAmasTable extends Migration
             $table->text('content');
             $table->string('person',50);
             $table->string('tags',255);
-            
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('ama_announcement_id');
+            $table->foreign('ama_announcement_id')->references('id')->on('ama_announcements');
             $table->timestamps();
         });
 
-
-        Schema::table('amas', function($table) {
-
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
-        });
-
-        Schema::table('amas', function($table) {
-            
-            $table->unsignedInteger('ama_announcement_id');
-            $table->foreign('ama_announcement_id')->references('id')->on('ama_announcements');
-
-        });
     }
 
     /**

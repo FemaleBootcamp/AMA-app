@@ -17,15 +17,12 @@ class CreateAmaAnnouncementsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('text');
-            
-
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
 
-        Schema::table('ama_announcements', function($table) {
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-        });
+        
     }
 
     /**

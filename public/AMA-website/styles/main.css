@@ -1,7 +1,7 @@
 .nav-badge {
 	font-size: 18pt !important;
 	margin-right: 40px !important;
-	
+
 }
 
 .nav-background {
@@ -10,11 +10,12 @@
 
 .carousel-slide {
 	float: center;
-	
+
 }
 
 .jumbotron {
-	padding-left: 20em; 
+    padding-left: 20em;
+    margin-bottom: 0em;
 }
 
 
@@ -26,4 +27,15 @@
 
 .ct-footer {
   background-color: cornflowerblue;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#sidebar {
+    height: 100%;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
 }

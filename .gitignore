@@ -3,6 +3,10 @@
 /public/storage
 /storage/*.key
 /vendor
+/.idea
+/.vscode
+/nbproject
+/.vagrant
 .env
 .phpunit.result.cache
 Homestead.json

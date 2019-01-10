@@ -20,13 +20,13 @@ class AmaController extends Controller
 
         
         
-        /* 
+        /*
             if ($request->has('date')) {
-                $amas = $amas->where('created_at', '>=', $date)->paginate(20);
+                $amas = $amas->where('created_at', '>=', 'date')->paginate(1);
                 }
 
-        */
-            
+        
+          */  
 
         /*  
             if(request()->has('tags')){

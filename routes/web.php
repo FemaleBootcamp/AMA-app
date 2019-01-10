@@ -33,5 +33,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/admin/ama-list/', 'AmaController@index')->middleware('auth');
-Route::get('/admin/ama-list/{tags}', 'AmaController@index')->middleware('auth');
+//Route::get('/admin/ama-list/{tags}', 'AmaController@index')->middleware('auth');
 

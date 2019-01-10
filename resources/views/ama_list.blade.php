@@ -50,10 +50,12 @@
 
 
           <p> Filter data by: </p>
-          	<form>
-		        <input type="radio" name="filter" value="tags" > Tags
-		        <input type="radio" name="filter" value="date" id="datepicker"> Date 
-		 	
+          	<form action="">
+		        
+		        <input type="date" min="2019-01-01" max="2019-12-31" name="date"> 
+		        <input type="radio" name="tags" > Tags
+		    	</br>
+		 		<input type="submit" value="Submit">
 
 			</form>
          

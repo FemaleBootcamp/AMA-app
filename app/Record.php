@@ -4,5 +4,5 @@ namespace App;
 
 class Record 
 {
-    protected $table = 'records';
+  protected $table = 'records';
 }

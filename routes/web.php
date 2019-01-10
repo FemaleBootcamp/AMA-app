@@ -14,7 +14,24 @@
 Route::get('/', function () {
     return view('welcome');
 });
+/*
+
+Route::get('/admin/ama-list', function () {
+    return view('ama_list');
+});
+*/
 
 Auth::routes();
 
+Route::get('/admin', function () {
+    return view('layouts.admin');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+Route::get('/admin/ama-list/', 'AmaController@index')->middleware('auth');
+Route::get('/admin/ama-list/{tags}', 'AmaController@index')->middleware('auth');
+

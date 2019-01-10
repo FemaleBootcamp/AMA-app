@@ -8,7 +8,7 @@ use App\Record;
 
 class RecordsController extends Controller
 {
-public function getRecord( $id ){
+    public function getRecord( $id ){
     return [
         'date' => $this->date,
         'title' => $this->title,

@@ -52,8 +52,27 @@
           <p> Filter data by: </p>
           	<form action="">
 		        
-		        <input type="date" min="2019-01-01" max="2019-12-31" name="date"> 
-		        <input type="radio" name="tags" > Tags
+		        From:<input type="date" min="2018-01-01" max="2019-12-31" name="date_from"> 
+
+		        To:<input type="date" min="2018-01-01" max="2019-12-31" name="date_to"> 
+		    	</br>
+
+		    		Tags: 
+		    	<select  id="select_tags" name="tags"  style="width: 20%">
+
+  					@foreach($amas as $amas)
+
+  						
+            			<option value=" $amas->tags" > amas </option>
+            			<option value=" tags" > tags </option>
+
+            		@endforeach
+
+				</select>
+
+
+		        
+
 		    	</br>
 		 		<input type="submit" value="Submit">
 
@@ -62,11 +81,11 @@
           </div>
 
 
-
     
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@2.1.6/dist/vue.js"></script>
     <script src="/js/app.js"></script> 
+    
 
    
 

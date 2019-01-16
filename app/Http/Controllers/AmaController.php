@@ -16,33 +16,23 @@ class AmaController extends Controller
     {
        
    
-         $amas = DB::table('amas')->select('title', 'person', 'tags', 'created_at')->paginate(20);
-
-        
-        echo $request->date_from;
-        echo $request->date_to;
-        echo $request->tags;
+         $amas = DB::table('amas')->select('title', 'person', 'tags', 'created_at');
         
             if ($request->has('date_from')) {
+               $amas -> where('created_at', '>=', $request->date_from);
+            }  
 
-
-               $amas = DB::table('amas')->select('title', 'person', 'tags', 'created_at')->whereBetween('created_at', [$request->date_from, $request->date_to])->paginate(20);
-
-
-                }     
-
-         
-             if(request()->has('tags')){
-                $amas = DB::table('amas')->select('title', 'person', 'tags', 'created_at')->where('tags' , $request->tags )->paginate(20);
-                }
-
-        
-
-        
-          return view('ama_list',['amas' => $amas]);
-
+             if ($request->has('date_to')) {
+               $amas -> where('created_at', '<=', $request->date_to);
+            }  
                 
-            
+            if ($request->has('tags')){
+                $amas -> whereIn('tags' ,$request->tags);
+            }        
+
+        $amas = $amas->paginate(20);
+
+          return view('ama_list',['amas' => $amas]);
     }
 
 

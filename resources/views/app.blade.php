@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title')</title>
+    <title>AMA</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -55,8 +55,8 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1>Ask Me Anything @yield('site-heading')</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap @yield('subheading')</span>
+              <h1>Ask Me Anything </h1>
+              {{-- <span class="subheading">A Blog Theme by Start Bootstrap </span> --}}
             </div>
           </div>
         </div>
@@ -65,27 +65,7 @@
 
     <!-- Main Content -->
     <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                Man must explore, and this is exploration at its greatest @yield('post-title')
-              </h2>
-              <h3 class="post-subtitle">
-                Problems look mighty small from 150 miles up @yield('post-subtitle')
-              </h3>
-            </a>
-            <p class="post-meta"> Posted by @yield('post-meta')
-              <a href="#">Start Bootstrap</a>
-              on September 24, 2018</p>
-          </div>
-          <!-- Pager -->
-          <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-          </div>
-        </div>
-      </div>
+        @yield('content')
     </div>
 
     <hr>

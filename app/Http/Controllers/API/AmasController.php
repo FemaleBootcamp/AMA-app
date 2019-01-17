@@ -4,13 +4,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Ama;
+use Request;
 
-class AmasController
+class AmasController extends Controller
 {
-    public function getAma($id)
-    {
-        $ama = Ama::where('id', '=', $id)->first();
-        return response()->json($ama);
+    public function getAma(Ama $id)
+   {
+     $ama= Ama::find($id);
+     return response()->json($ama);
     }
-
 }

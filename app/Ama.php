@@ -2,7 +2,10 @@
 
 namespace App;
 
-class Ama 
+use Illuminate\Database\Eloquent\Model;
+
+class Ama extends Model
 {
     protected $table = 'amas';
+    
 }

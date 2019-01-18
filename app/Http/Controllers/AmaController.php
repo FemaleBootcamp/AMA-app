@@ -14,29 +14,31 @@ class AmaController extends Controller
      */
     public function index(Request $request)
     {
-       
-   
-         $amas = DB::table('amas')->select('title', 'person', 'tags', 'created_at');
-        
-            if ($request->has('date_from')) {
-               $amas -> where('created_at', '>=', $request->date_from);
-            }  
 
-             if ($request->has('date_to')) {
-               $amas -> where('created_at', '<=', $request->date_to);
-            }  
-                
-            if ($request->has('tags')){
-                $amas -> whereIn('tags' ,$request->tags);
-            }        
+        $tags = DB::table('amas')->select(DB::raw('group_concat(tags) as tags'))->value('tags');
+
+        $tag           = explode(",", $tags);
+        $filtered_tags = array_unique($tag);
+
+        $amas = DB::table('amas')->select('title', 'person', 'tags', 'created_at');
+
+        if ($request->has('date_from')) {
+            $amas->where('created_at', '>=', $request->date_from);
+        }
+
+        if ($request->has('date_to')) {
+            $amas->where('created_at', '<=', $request->date_to);
+        }
+
+        if ($request->has('tags')) {
+            $amas->whereIn('tags', $request->tags);
+        }
 
         $amas = $amas->paginate(20);
 
-          return view('ama_list',['amas' => $amas]);
+        return view('ama_list', ['amas' => $amas], ['tags' => $filtered_tags]);
+
     }
-
-
-   
 
     /**
      * Show the form for creating a new resource.

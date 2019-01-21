@@ -17,3 +17,7 @@ Route::get('/', function () {
 
 Route::get('/ama', 'AmaController@index');
 Route::get('/announcement', 'AnnouncementController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/ama', 'AmaController@index');
+Route::get('/announcement', 'AnnouncementController@index');

@@ -8,16 +8,17 @@
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
 
-        @foreach($vm->amas as $ama)
+        @foreach($vm->data as $ama)
           <div class="post-preview">
             <a href="post.html">
               <h2 class="post-title">
                   {{$ama->title}}
               </h2>
-              {{-- <h3 class="post-subtitle">
-              </h3> --}}
+              <h3 class="post-subtitle">
+                  {{$ama->person}}
+              </h3>
             </a>
-            <p class="post-meta">{{$ama->text}}</p>
+            <p class="post-meta">{{$ama->content}}</p>
           </div>
          @endforeach
 

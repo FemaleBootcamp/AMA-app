@@ -33,7 +33,7 @@ class AmaController extends Controller
         }
 
         if ($request->tags) {
-           $amas->where('tags', $request->tags); 
+           $amas->where('tags', 'like', "%$request->tags%"); 
         }
 
         $amas = $amas->paginate(20);

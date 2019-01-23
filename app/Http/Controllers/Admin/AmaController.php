@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,16 +23,17 @@ class AmaController extends Controller
 
         $amas = DB::table('amas')->select('title', 'person', 'tags', 'created_at');
 
-        if ($request->has('date_from')) {
+           
+          if($request->date_from) {
             $amas->where('created_at', '>=', $request->date_from);
         }
 
-        if ($request->has('date_to')) {
+        if ($request->date_to) {
             $amas->where('created_at', '<=', $request->date_to);
         }
 
-        if ($request->has('tags')) {
-            $amas->whereIn('tags', $request->tags);
+        if ($request->tags) {
+           $amas->where('tags', $request->tags); 
         }
 
         $amas = $amas->paginate(20);

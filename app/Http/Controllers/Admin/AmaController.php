@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Ama;
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,8 +25,7 @@ class AmaController extends Controller
 
         $amas = DB::table('amas')->select('title', 'person', 'tags', 'created_at');
 
-           
-          if($request->date_from) {
+        if ($request->date_from) {
             $amas->where('created_at', '>=', $request->date_from);
         }
 
@@ -33,7 +34,7 @@ class AmaController extends Controller
         }
 
         if ($request->tags) {
-           $amas->where('tags', 'like', "%$request->tags%"); 
+            $amas->where('tags', 'like', "%$request->tags%");
         }
 
         $amas = $amas->paginate(20);
@@ -49,18 +50,37 @@ class AmaController extends Controller
      */
     public function create()
     {
-        //
+        $ama_announcements = DB::table('ama_announcements')->select('title', 'user_id')->get();
+        return view('create', ['ama_announcements' => $ama_announcements]);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function save(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'title'   => 'required',
+            'content' => 'required',
+        ]);
+
+        $amas = new Ama();
+
+        $amas->title   = $request->input('title');
+        $amas->content = $request->input('content');
+
+        if ($request->tags) {
+            $amas->tags = $request->input('tags');
+        }
+
+        $amas->person              = Auth::user()->name;
+        $amas->user_id             = Auth::user()->id;
+        $amas->ama_announcement_id = $request->input('ama_announcements');
+        $amas->save();
+        return redirect('/create')->with('success', true)->with('message', ' ');
     }
 
     /**

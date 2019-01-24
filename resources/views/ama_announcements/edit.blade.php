@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Editing Announcment</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-
-<nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="{{ URL::to('ama_announcements') }}">Announecment</a>
-    </div>
-    <ul class="nav navbar-nav">
-        <li><a href="{{ URL::to('ama_announcements') }}">View All </a></li>
-        <li><a href="{{ URL::to('ama_announcements/create') }}">Create new</a>
-    </ul>
-</nav>
+@extends('layouts.app')
+@section('content')
 
 <h1>Edit {{ $ama_announcements->title }}</h1>
 
@@ -55,5 +39,4 @@
 {{ Form::close() }}
 
 </div>
-</body>
-</html>
+@endsection

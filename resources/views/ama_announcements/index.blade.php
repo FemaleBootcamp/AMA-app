@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin AmaAnnouncements</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-
+@extends('layouts.app')
+@section('content')
 <nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="{{ URL::to('ama_announcements') }}">Ama Announcements</a>
-    </div>
+    
     <ul class="nav navbar-nav">
-        <li><a href="{{ URL::to('ama_announcements') }}">View All Announcements</a></li>
         <li><a href="{{ URL::to('ama_announcements/create') }}">Create a Announcement</a>
     </ul>
 </nav>
@@ -32,7 +22,6 @@
             <td>Text</td>
             <td>User ID</td>
             <td>Created at</td>
-            <td>Updated at</td>
             <td>Actions</td>
 
         </tr>
@@ -45,7 +34,6 @@
             <td>{{ $value->text }}</td>
             <td>{{ $value->user_id }}</td>
             <td>{{ $value->created_at }}</td>
-            <td>{{ $value->updated_at }}</td>
 
             <!-- we will also add show, edit, and delete buttons -->
             <td>
@@ -69,5 +57,4 @@
 </table>
 
 </div>
-</body>
-</html>
+@endsection

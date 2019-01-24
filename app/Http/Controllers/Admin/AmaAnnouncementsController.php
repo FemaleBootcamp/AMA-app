@@ -54,8 +54,6 @@ class AmaAnnouncementsController extends Controller
             'title'       => 'required',
             'text'      => 'required',
             'user_id'       => 'required',
-            'created_at'     => 'required' ,
-            'updated_at'     ,
             
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -63,16 +61,13 @@ class AmaAnnouncementsController extends Controller
         // process the login
         if ($validator->fails()) {
             return Redirect::to('ama_announcements/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+                ->withErrors($validator);
         } else {
             // store
             $ama_announcements = new AmaAnnouncement;
             $ama_announcements->title       = Input::get('title');
             $ama_announcements->text      = Input::get('text');
             $ama_announcements->user_id       = Input::get('user_id');
-            $ama_announcements->created_at      = Input::get('created_at');
-            $ama_announcements->updated_at       = Input::get('updated_At');
             
             $ama_announcements->save();
 
@@ -129,23 +124,20 @@ class AmaAnnouncementsController extends Controller
             'text'      => 'required',
             'user_id'       => 'required',
             'created_at'     ,
-            'updated_at'       => 'required',
+            'updated_at'     ,
         );
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
         if ($validator->fails()) {
             return Redirect::to('ama_announcements/' . $id . '/edit')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+                ->withErrors($validator);
         } else {
             // store
             $ama_announcements = AmaAnnouncement::find($id);
             $ama_announcements->title       = Input::get('title');
             $ama_announcements->text      = Input::get('text');
             $ama_announcements->user_id      = Input::get('user_id');
-            $ama_announcements->created_at      = Input::get('created_at');
-            $ama_announcements->updated_at      = Input::get('updated_at');
             
             $ama_announcements->save();
 

@@ -8,8 +8,6 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import VueDisqus from 'vue-disqus';
-Vue.use(VueDisqus);
 
 /**
  * The following block of code may be used to automatically register your

@@ -75,6 +75,9 @@ class AmaController extends Controller
         if ($request->tags) {
             $amas->tags = $request->input('tags');
         }
+        else{
+            $amas->tags = "";
+        }
 
         $amas->person              = Auth::user()->name;
         $amas->user_id             = Auth::user()->id;

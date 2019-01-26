@@ -18,20 +18,7 @@
         {{ Form::text('text', null, array('class' => 'form-control')) }}
     </div>
 
-    <div class="form-group">
-        {{ Form::label('user_id', 'User ID') }}
-        {{ Form::number('user_id', null, array('class' => 'form-control')) }}
-    </div>
-
-    <div class="form-group">
-        {{ Form::label('created_at', 'Created at') }}
-        {{ Form::date('created_at', null, array('class' => 'form-control')) }}
-    </div>
-
-    <div class="form-group">
-        {{ Form::label('updated_at', 'Updated at') }}
-        {{ Form::date('updated_at', null, array('class' => 'form-control')) }}
-    </div>
+  
 
 
     {{ Form::submit('Edit the Announcement!', array('class' => 'btn btn-primary')) }}

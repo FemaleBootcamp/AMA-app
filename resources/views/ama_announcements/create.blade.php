@@ -18,10 +18,6 @@
         {{ Form::text('text', old('text'), array('class' => 'form-control')) }}
     </div>
 
-    <div class="form-group">
-        {{ Form::label('user_id', 'User ID') }}
-        {{ Form::number('user_id', old('user_id'), array('class' => 'form-control')) }}
-    </div>
 
     {{ Form::submit('Create the Announcement!', array('class' => 'btn btn-primary')) }}
 

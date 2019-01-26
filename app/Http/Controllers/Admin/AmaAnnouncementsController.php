@@ -11,6 +11,7 @@ use Session;
 use Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use Auth;
 
 class AmaAnnouncementsController extends Controller
 {
@@ -53,7 +54,7 @@ class AmaAnnouncementsController extends Controller
         $rules = array(
             'title'       => 'required',
             'text'      => 'required',
-            'user_id'       => 'required',
+            'user_id',
             
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -67,7 +68,7 @@ class AmaAnnouncementsController extends Controller
             $ama_announcements = new AmaAnnouncement;
             $ama_announcements->title       = Input::get('title');
             $ama_announcements->text      = Input::get('text');
-            $ama_announcements->user_id       = Input::get('user_id');
+            $ama_announcements->user_id =  Auth::id();
             
             $ama_announcements->save();
 
@@ -122,9 +123,7 @@ class AmaAnnouncementsController extends Controller
         $rules = array(
             'title'       => 'required',
             'text'      => 'required',
-            'user_id'       => 'required',
-            'created_at'     ,
-            'updated_at'     ,
+            'user_id',
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -137,7 +136,6 @@ class AmaAnnouncementsController extends Controller
             $ama_announcements = AmaAnnouncement::find($id);
             $ama_announcements->title       = Input::get('title');
             $ama_announcements->text      = Input::get('text');
-            $ama_announcements->user_id      = Input::get('user_id');
             
             $ama_announcements->save();
 

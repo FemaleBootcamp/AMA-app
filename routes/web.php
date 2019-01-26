@@ -16,9 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('/ama', 'AmaController@index');
+Route::get('/announcement', 'AnnouncementController@index');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/ama-list/', 'Admin\AmaController@index')->middleware('auth');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/admin/ama-list/', 'Admin\AmaController@index')->middleware('auth');

@@ -21,9 +21,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/ama-list/', 'Admin\AmaController@index')->middleware('auth');
-
-Route::get('/create', 'Admin\AmaController@create')->middleware('auth');
-Route::post('/create', 'Admin\AmaController@save');
-
-
+Route::resource('amas', 'Admin\AmaController')->middleware('auth');

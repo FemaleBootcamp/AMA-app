@@ -51,7 +51,13 @@ class AmaController extends Controller
     public function create()
     {
         $ama_announcements = DB::table('ama_announcements')->select('title', 'user_id')->get();
-        return view('create', ['ama_announcements' => $ama_announcements]);
+        
+        $tags = DB::table('amas')->select(DB::raw('group_concat(tags) as tags'))->value('tags');
+
+        $tag           = explode(",", $tags);
+        $filtered_tags = array_unique($tag);
+
+        return view('create', ['ama_announcements' => $ama_announcements], ['tags' => $filtered_tags]);
     }
 
     /**
@@ -59,7 +65,7 @@ class AmaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function save(Request $request)
+    public function store(Request $request)
     {
 
         $this->validate($request, [
@@ -79,11 +85,11 @@ class AmaController extends Controller
             $amas->tags = "";
         }
 
-        $amas->person              = Auth::user()->name;
+        $amas->person              = $request->input('person');
         $amas->user_id             = Auth::user()->id;
         $amas->ama_announcement_id = $request->input('ama_announcements');
         $amas->save();
-        return redirect('/create')->with('success', true)->with('message', ' ');
+        return redirect('/create')->with('success', 'Ama record successfully saved');
     }
 
     /**

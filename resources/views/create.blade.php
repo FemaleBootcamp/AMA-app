@@ -1,26 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
+@extends('layouts/admin')
 
-	<title>Create record </title>
+@section('title')
+	Create AMA record
+@endsection
 
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+@section('content')
 
 
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
-</head>
-
-<body>
-
-	<div class="col-md-6">
+	<div class="col-sm-12">
 		<h1> Create new AMA record </h1>
 		<form method="POST" action="">
 			{{csrf_field()}}
@@ -43,11 +30,15 @@
 			@endif
 			<div class="form-group">
 				<label>Tags</label>
-				<input type="text" name="tags" pattern="[a-zA-Z0-9,]*" class="form-control" placeholder="Tags">
+				<select id="select_tags" name="tags" multiple="multiple" style="width: 100%">
+     					 	@foreach($tags as $tag)
+            				<option value="{{$tag}}"> {{$tag}} </option>
+            				@endforeach
+					     </select>
 			</div>
 			<div class="form-group">
-				<label>Date created</label>
-				<input input type="date" name="date_created" class="form-control">
+				<label>Person</label>
+				<input type="text" name="person" class="form-control" placeholder="Person">
 			</div>
 			<div class="form-group">
 				<label>Select announcement</label>
@@ -61,18 +52,26 @@
 				<input type="submit" value="Submit" class="btn btn-primary">
 			</div>
 
-
-			@if(Session::has('success'))
-			<div class="alert alert-success">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<strong>Success!</strong>
-				{{ Session::get('message', '') }}
-			</div>
+			@if (session('success'))
+    			<div class="alert alert-success">
+        			{{ session('success') }}
+    			</div>
 			@endif
 
 		</form>
 
 	</div>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 	<script>
 		$(document).ready(function() {
@@ -90,6 +89,15 @@
 		});
 	</script>
 
-</body>
+	<script>
+        $(document).ready(function(){
+            $('#select_tags').select2({
 
-</html>
+            	placeholder : 'Select tag'
+
+            });
+        });
+    </script>
+
+
+@endsection

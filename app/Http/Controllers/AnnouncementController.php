@@ -12,7 +12,5 @@ class AnnouncementController extends BaseController
         $announcement =Announcement::doesntHave('amas')->orderBy('created_at', 'DESC')->first();
 
         return view('announcement', ['announcement' => $announcement, 'imageUrl' => $imageUrl ]);
-
-
     }
 }

@@ -12,5 +12,4 @@ class AmaAnnouncement extends Model
     {
         return $this->hasMany('App\Ama');
     }
-
 }

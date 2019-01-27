@@ -10,7 +10,7 @@
 
         @foreach($amas as $ama)
           <div class="post-preview">
-            <a href="post.html">
+          <a href="{{ URL::to('ama/' . $ama->id) }}">
               <h2 class="post-title">
                   {{$ama->title}}
               </h2>

@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/ama', 'AmaController@index');
+Route::get('ama/{id}', 'AmaController@show');
 Route::get('/announcement', 'AnnouncementController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/ama-list/', 'Admin\AmaController@index')->middleware('auth');

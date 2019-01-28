@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('imageUrl')
-{{$imageUrl}}
+{{ URL::asset($imageUrl) }}
 @endsection
 
 @section('content')

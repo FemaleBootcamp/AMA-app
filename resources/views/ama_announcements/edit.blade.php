@@ -18,12 +18,9 @@
         {{ Form::text('text', null, array('class' => 'form-control')) }}
     </div>
 
-  
-
-
     {{ Form::submit('Edit the Announcement!', array('class' => 'btn btn-primary')) }}
 
-{{ Form::close() }}
+    {{ Form::close() }}
 
 </div>
 @endsection

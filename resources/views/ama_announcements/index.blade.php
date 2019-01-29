@@ -1,15 +1,14 @@
 @extends('layouts.app')
 @section('content')
 <nav class="navbar navbar-inverse">
-    
+
     <ul class="nav navbar-nav">
-        <li><a href="{{ URL::to('ama_announcements/create') }}">Create a Announcement</a>
+        <li><a href="{{ URL::to('admin/ama_announcements/create') }}">Create a Announcement</a>
     </ul>
 </nav>
 
 <h1>All Announcements</h1>
 
-<!-- will be used to show any messages -->
 @if (Session::has('message'))
     <div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
@@ -34,22 +33,13 @@
             <td>{{ $value->text }}</td>
             <td>{{ $value->user_id }}</td>
             <td>{{ $value->created_at }}</td>
-
-            <!-- we will also add show, edit, and delete buttons -->
             <td>
-
-                <!-- delete the announcement (uses the destroy method DESTROY /ama_announcements/{id} -->
-                {{ Form::open(array('url' => 'ama_announcements/' . $value->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Announcement', array('class' => 'btn btn-warning')) }}
+                <a class="btn btn-small btn-info" href="{{ URL::to('admin/ama_announcements/' . $value->id) }}">Show</a>
+                <a class="btn btn-small btn-success" href="{{ URL::to('admin/ama_announcements/' . $value->id . '/edit') }}">Edit</a>
+                {{ Form::open(array('url' => 'admin/ama_announcements/' . $value->id, 'class' => 'pull-right')) }}
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Delete this Announcement', array('class' => 'btn btn-warning')) }}
                 {{ Form::close() }}
-
-                <!-- show the announcement (uses the show method found at GET /ama_announcements/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('ama_announcements/' . $value->id) }}">Show</a>
-
-                <!-- edit this announcement (uses the edit method found at GET /ama_announcements/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('ama_announcements/' . $value->id . '/edit') }}">Edit</a>
-
             </td>
         </tr>
     @endforeach

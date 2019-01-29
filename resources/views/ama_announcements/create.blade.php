@@ -6,7 +6,7 @@
 <!-- if there are creation errors, they will show here -->
 {{ Html::ul($errors->all()) }}
 
-{{ Form::open(array('url' => 'ama_announcements')) }}
+{{ Form::open(array('url' => 'admin/ama_announcements')) }}
 
     <div class="form-group">
         {{ Form::label('title', 'Title') }}
@@ -18,10 +18,9 @@
         {{ Form::text('text', old('text'), array('class' => 'form-control')) }}
     </div>
 
-
     {{ Form::submit('Create the Announcement!', array('class' => 'btn btn-primary')) }}
 
-{{ Form::close() }}
+    {{ Form::close() }}
 
 </div>
 @endsection

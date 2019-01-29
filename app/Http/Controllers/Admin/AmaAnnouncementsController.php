@@ -2,83 +2,68 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\AmaAnnouncement;
-use View;
-use Session;
-use Redirect;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Input;
+use App\Http\Controllers\Controller;
 use Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 
 class AmaAnnouncementsController extends Controller
 {
-        /**
-         * Display a listing of the resource.
-         *
-         * @return Response
-         */
-        public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
     {
-        // get all announcements
         $ama_announcements = AmaAnnouncement::all();
 
-        // load the view and pass the announcment
-        return View::make('ama_announcements.index')
+        return view('ama_announcements.index')
             ->with('ama_announcements', $ama_announcements);
     }
 
-    
-        /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response
      */
     public function create()
     {
-        // load the create form (app/resources/views/ama_announments/create.blade.php)
-        return View::make('ama_announcements.create');
+        return view('ama_announcements.create');
     }
-    
-        /**
+
+    /**
      * Store a newly created resource in storage.
      *
      * @return Response
      */
     public function store()
     {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'title'       => 'required',
-            'text'      => 'required',
+            'title' => 'required',
+            'text' => 'required',
             'user_id',
-            
+
         );
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
         if ($validator->fails()) {
-            return Redirect::to('ama_announcements/create')
+            return redirect('admin/ama_announcements/create')
                 ->withErrors($validator);
         } else {
-            // store
             $ama_announcements = new AmaAnnouncement;
-            $ama_announcements->title       = Input::get('title');
-            $ama_announcements->text      = Input::get('text');
-            $ama_announcements->user_id =  Auth::id();
-            
+            $ama_announcements->title = Input::get('title');
+            $ama_announcements->text = Input::get('text');
+            $ama_announcements->user_id = Auth::id();
+
             $ama_announcements->save();
 
-            // redirect
-            Session::flash('message', 'Successfully created announcement!');
-            return Redirect::to('ama_announcements');
+            return redirect('admin/ama_announcements')->with('message', 'Successfully created announcement!');
         }
     }
-    
-        /**
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -86,15 +71,13 @@ class AmaAnnouncementsController extends Controller
      */
     public function show($id)
     {
-        // get the announcment
         $ama_announcements = AmaAnnouncement::find($id);
 
-        // show the view and pass the announcement to it
-        return View::make('ama_announcements.show')
+        return view('ama_announcements.show')
             ->with('ama_announcements', $ama_announcements);
     }
-    
-         /**
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -102,15 +85,13 @@ class AmaAnnouncementsController extends Controller
      */
     public function edit($id)
     {
-        // get the announcement
         $ama_announcements = AmaAnnouncement::find($id);
 
-        // show the edit form and pass the announcement
-        return View::make('ama_announcements.edit')
+        return view('ama_announcements.edit')
             ->with('ama_announcements', $ama_announcements);
     }
-    
-        /**
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  int  $id
@@ -118,33 +99,27 @@ class AmaAnnouncementsController extends Controller
      */
     public function update($id)
     {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'title'       => 'required',
-            'text'      => 'required',
+            'title' => 'required',
+            'text' => 'required',
             'user_id',
         );
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
         if ($validator->fails()) {
-            return Redirect::to('ama_announcements/' . $id . '/edit')
+            return redirect('admin/ama_announcements/' . $id . '/edit')
                 ->withErrors($validator);
         } else {
-            // store
             $ama_announcements = AmaAnnouncement::find($id);
-            $ama_announcements->title       = Input::get('title');
-            $ama_announcements->text      = Input::get('text');
-            
+            $ama_announcements->title = Input::get('title');
+            $ama_announcements->text = Input::get('text');
+
             $ama_announcements->save();
 
-            // redirect
-            Session::flash('message', 'Successfully updated announcement!');
-            return Redirect::to('ama_announcements');
+            return redirect('admin/ama_announcements')->with('message', 'Successfully updated announcement!');
         }
     }
-        /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -152,12 +127,9 @@ class AmaAnnouncementsController extends Controller
      */
     public function destroy($id)
     {
-        // delete
         $ama_announcements = AmaAnnouncement::find($id);
         $ama_announcements->delete();
 
-        // redirect
-        Session::flash('message', 'Successfully deleted the announcement!');
-        return Redirect::to('ama_announcements');
+        return redirect('admin/ama_announcements')->with('message', 'Successfully deleted announcement!');
     }
-    }
+}

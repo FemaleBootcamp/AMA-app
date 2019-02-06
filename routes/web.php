@@ -21,4 +21,6 @@ Route::get('/announcement', 'AnnouncementController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/ama-list/', 'Admin\AmaController@index')->middleware('auth');
 
+Route::resource('/admin/ama_announcements', 'Admin\AmaAnnouncementsController')->middleware('auth');
+
 Auth::routes();
